@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+<!--    <img src="./assets/logo.png">-->
     <router-view/>
+<!--    <hello-world/>-->
+<!--    <new-vue-component/>-->
   </div>
 </template>
 
 <script>
+// import HelloWorld from './components/HelloWorld'
+// import NewVueComponent from './components/NewVueComponent'
 export default {
   name: 'App'
+  // components: {NewVueComponent}
+  // components: {HelloWorld}
 }
 </script>
 
