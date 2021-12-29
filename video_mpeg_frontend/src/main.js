@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/index'
 import 'bootstrap'
 
 import './css/bootstrap.css' // without this, the result displayed wrong
@@ -19,6 +20,7 @@ import axios from 'axios'
 // }
 
 window.Vue = Vue
+window.axios = require('axios')
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios.create(/* axiosConfig */)
 
@@ -26,7 +28,7 @@ Vue.prototype.$axios = axios.create(/* axiosConfig */)
 new Vue({
   el: '#app',
   router,
-  // store,
+  store,
   // components: { App }
   // template: '<App/>'
   render: h => h(App) // делает то же самое, что и выше две строки вместе взятые

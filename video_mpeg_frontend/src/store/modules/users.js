@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   namespaced: true,
   state: {
@@ -18,10 +20,26 @@ export default {
   actions: {
     async login (context, payload) {
       try {
-        const response = await this.$axios.post('/login', {
-          username: payload.uname,
+        console.log('1) ' + payload.uname + ' ' + payload.upassword)
+        console.log(axios)
+        const response = await axios.post('/login', {
+          name: payload.uname,
           password: payload.upassword
+        }, {
+          crossDomain: true,
+          baseURL: 'http://www.mpegvideoback.com',
+          Headers: {
+            'Access-Control-Allow-Origin': 'http://www.mpegvideofront.com',
+            'Access-Control-Allow-Methods': {
+              GET: 'GET',
+              POST: 'POST',
+              PUT: 'PUT',
+              DELETE: 'DELETE',
+              OPTIONS: 'OPTIONS'
+            }
+          }
         })
+        console.log('res === ' + response.data)
         if (response.status === 200) {
           if (response.data.two_factor != null) {
             console.log('login' + response.data.two_factor)
@@ -29,9 +47,12 @@ export default {
         } else {
         }
       } catch (error) {
+        console.log('khm khm...sir, you need check out why your code jumps to try-catch\'s catch method')
+        console.log(error)
         if (error.response) {
-          if (error.response.data.errors.email[0]) {
-            return error.response.data.errors.email[0]
+          if (error.response.data) {
+            console.log('error.response.data' + error.response.data)
+            return error.response.data
           }
         }
       }
@@ -68,7 +89,7 @@ export default {
 
     async register (context, payload) {
       try {
-        console.log(payload.name + ' ' + payload.email + ' ' + payload.password + ' ' + payload.password_confirmation)
+        console.log(payload.username + ' ' + payload.email + ' ' + payload.password + ' ' + payload.password_confirmation)
         const response = await this.$axios
           .post('/register', {
             name: payload.username,
@@ -86,11 +107,13 @@ export default {
                 PUT: 'PUT',
                 DELETE: 'DELETE',
                 OPTIONS: 'OPTIONS'
-              }
+              },
+              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             }
           })
         console.log(response.data)
       } catch (error) {
+        console.log(error)
       }
     },
 

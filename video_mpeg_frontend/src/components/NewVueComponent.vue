@@ -19,19 +19,20 @@ export default {
       try {
         // let bURL = 'google.com'
         // const res = await axios({ method: 'get', url: '/' /* , baseURL: 'www.mpegvideoback.com' */ })
-        const res = await axios.get('/', {
+        const res = await axios.post('/login', {}, {
           crossDomain: true,
           baseURL: 'http://www.mpegvideoback.com',
           Headers: {
-            'Access-Control-Allow-Origin': 'http://www.mpegvideofront.com',
-            'Access-Control-Allow-Origin': 'http://localhost:8080',
+            'Access-Control-Allow-Origin': '*',
+            // 'Access-Control-Allow-Origin': 'http://localhost:8080',
             'Access-Control-Allow-Methods': {
               GET: 'GET',
               POST: 'POST',
               PUT: 'PUT',
               DELETE: 'DELETE',
               OPTIONS: 'OPTIONS'
-            }
+            },
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
           }
         })
         // console.log(res.data)

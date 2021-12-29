@@ -13,13 +13,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group([
-    'middleware' => ['web', 'cors'],
-//    'namespace' => $this->namespace,
-//    'prefix' => 'api',
-], function ($router) {
-    //Add you routes here, for example:
-    Route::get('/', [SimpleController::class, 'index']);
-});
+//Route::group([
+//    'middleware' => ['web', 'cors'],
+////    'namespace' => $this->namespace,
+////    'prefix' => 'api',
+//], function ($router) {
+//    //Add you routes here, for example:
+//    Route::get('/', [SimpleController::class, 'index']);
+//    Route::post('/login', [SimpleController::class,'index']);
+//    Route::get('/login', [SimpleController::class,'index']);
+//});
 
+
+Route::get('/', [SimpleController::class, 'index']);
+Route::post('/login', [SimpleController::class,'index']);
+Route::get('/login', [SimpleController::class,'index']);
 
